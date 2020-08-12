@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async'; //ㄴ
+import 'dart:async';
 
 void main() => runApp(TimerApp());
 
