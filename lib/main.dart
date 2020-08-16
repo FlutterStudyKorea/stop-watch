@@ -34,14 +34,16 @@ class _TimerAppState extends State<TimerApp> {
 
   @override
   Widget build(BuildContext context) {
+
     if (timer == null) {
       timer = Timer.periodic(duration, (Timer t) {
         handleTick();
       });
     }
-    int seconds = secondsPassed % 60;
-    int minutes = secondsPassed ~/ 60;
-    int hours = secondsPassed ~/ (60 * 60);
+
+    int milliseconds = secondsPassed % 60;
+    int seconds = secondsPassed ~/ 60;
+    int minutes = secondsPassed ~/ (60 * 60);
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -68,12 +70,13 @@ class _TimerAppState extends State<TimerApp> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     LabelText(
-                        label: 'MIN', value: hours.toString().padLeft(2, '0')),
+                        label: 'MIN', value: minutes.toString().padLeft(2, '0')),
                     LabelText(
                         label: 'SEC',
-                        value: minutes.toString().padLeft(2, '0')),
+                        value: seconds.toString().padLeft(2, '0')),
                     LabelText(
-                        label: ' ', value: seconds.toString().padLeft(2, '0')),
+                        label: 'MS',
+                        value: milliseconds.toString().padLeft(2, '0')),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -115,7 +118,7 @@ class _TimerAppState extends State<TimerApp> {
                               borderRadius: BorderRadius.circular(10)),
                           onPressed: () {
                             setState(() {
-                              _recordLapTime('$minutes.$hours');
+                              _recordLapTime('$seconds.$milliseconds');
                             });
                           },
                           child: Container(
@@ -154,7 +157,7 @@ class _TimerAppState extends State<TimerApp> {
     void _reset() {
     setState(() {
       isActive = false;
-      timer?.cancel();
+      //timer?.cancel();
       _lapTimes.clear();
       secondsPassed = 0;
     });
