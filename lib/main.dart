@@ -27,7 +27,7 @@ class _TimerAppState extends State<TimerApp> {
   void handleTick() {
     if (isActive) {
       setState(() {
-        secondsPassed = secondsPassed + 1;
+        secondsPassed = secondsPassed + 1; //count
       });
     }
   }
