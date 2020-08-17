@@ -12,7 +12,7 @@ class StopWatchApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BMI Calculator',
+      title: title,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.indigo,
@@ -22,9 +22,7 @@ class StopWatchApp extends StatelessWidget {
         appBar: AppBar(
           title: Text(title),
         ),
-        body: StopWatchScreen(
-          title: title,
-        ),
+        body: StopWatchScreen(),
       ),
     );
   }
