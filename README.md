@@ -3,4 +3,4 @@
 
 ![스크린샷](./capture.PNG)
 
-Reference code : https://github.com/robertkiszeli/stopwatch/blob/master/lib/widgets/timer_clock.dart
+Reference code : https://github.com/robertkiszeli/stopwatch/
