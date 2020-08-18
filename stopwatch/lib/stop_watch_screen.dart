@@ -17,77 +17,78 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      child: Container(
-        padding: EdgeInsets.all(10),
-        width: 300,
-        height: 300,
-        color: Colors.yellow.shade700,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              elapsedTime,
-              style: TextStyle(fontSize: 25),
-            ),
-            SizedBox(
-              height: 8.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.alarm_add),
-                  onPressed: () {
-                    if (!watchStatus) {
-                      startWatch();
-                    } else {
-                      watchStatus = false;
-                      stopWatch();
-                    }
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.save_alt),
-                  onPressed: () {
-                    setState(() {
-                      labItems.add(elapsedTime);
-                    });
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.repeat),
-                  onPressed: () {
-                    setState(() {
-                      resetWatcher();
-                    });
-                  },
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 12.0,
-            ),
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: labItems.length,
-                itemBuilder: (BuildContext ctxt, int Index) {
-                  return new Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      labItems[Index],
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  );
-                },
+      child: LayoutBuilder(builder: (context, BoxConstraints constraints) {
+        return Container(
+          width: constraints.maxWidth,
+          padding: EdgeInsets.only(top: 100),
+          color: Colors.yellow.shade700,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                elapsedTime,
+                style: TextStyle(fontSize: 50),
               ),
-            ),
-          ],
-        ),
-      ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.alarm_add),
+                    onPressed: () {
+                      if (!watchStatus) {
+                        startWatch();
+                      } else {
+                        watchStatus = false;
+                        stopWatch();
+                      }
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.save_alt),
+                    onPressed: () {
+                      setState(() {
+                        labItems.add(elapsedTime);
+                      });
+                    },
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.repeat),
+                    onPressed: () {
+                      setState(() {
+                        resetWatcher();
+                      });
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 12.0,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: labItems.length,
+                  itemBuilder: (BuildContext ctxt, int Index) {
+                    return new Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        labItems[Index],
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
       alignment: Alignment.center,
     );
   }
