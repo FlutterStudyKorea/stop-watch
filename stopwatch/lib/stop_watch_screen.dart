@@ -76,7 +76,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                     return new Container(
                       alignment: Alignment.center,
                       child: Text(
-                        labItems[Index],
+                        labItems[labItems.length - Index - 1],
                         style: TextStyle(
                           fontSize: 15,
                         ),
